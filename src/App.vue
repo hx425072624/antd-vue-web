@@ -38,10 +38,10 @@ import HFooter from '@/components/HFooter'
 export default {
   data () {
     return {
-      current: ['home'],
+      current: ['home']
     }
   },
-  components:{
+  components: {
     HFooter
   }
 }

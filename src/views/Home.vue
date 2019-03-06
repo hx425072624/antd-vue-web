@@ -3,13 +3,13 @@
     <a-carousel arrows>
       <div
         slot="prevArrow"
-        slot-scope="props"
+
         class="custom-slick-arrow"
         style="left: 10px;zIndex: 1"
       >
         <a-icon type="left-circle"/>
       </div>
-      <div slot="nextArrow" slot-scope="props" class="custom-slick-arrow" style="right: 10px">
+      <div slot="nextArrow"  class="custom-slick-arrow" style="right: 10px">
         <a-icon type="right-circle"/>
       </div>
       <div class="carousel-img" v-for="(item,index) in items" :key="index">
@@ -34,47 +34,47 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import HelloWorld from '@/components/HelloWorld.vue'
 export default {
-  name: "home",
-  data() {
+  name: 'home',
+  data () {
     return {
       items: [
         {
-          title: "hello world",
-          des: "this is my first test web site",
-          img: "/img/iso500.jpg"
+          title: 'hello world',
+          des: 'this is my first test web site',
+          img: '/img/iso500.jpg'
         },
         {
-          title: "hello world",
-          des: "this is my first test web site",
-          img: "/img/madem.jpg"
+          title: 'hello world',
+          des: 'this is my first test web site',
+          img: '/img/madem.jpg'
         },
         {
-          title: "hello world",
-          des: "this is my first test web site",
-          img: "/img/plume.jpg"
+          title: 'hello world',
+          des: 'this is my first test web site',
+          img: '/img/plume.jpg'
         },
         {
-          title: "hello world",
-          des: "this is my first test web site",
-          img: "/img/wod.jpg"
+          title: 'hello world',
+          des: 'this is my first test web site',
+          img: '/img/wod.jpg'
         }
       ]
-    };
+    }
   },
   methods: {
-    handleHover(e) {
-      console.log(e);
+    handleHover (e) {
+      console.log(e)
     },
-    handleOut(e) {
-      console.log(e);
+    handleOut (e) {
+      console.log(e)
     }
   },
   components: {
     HelloWorld
   }
-};
+}
 </script>
 <style  scoped>
 .ant-col-12 img {
