@@ -2,35 +2,29 @@
   <div id="app">
     <a-layout>
       <a-layout-header>
-        <a-menu v-model="current" mode="horizontal" >
+        <a-menu v-model="current" mode="horizontal">
           <a-menu-item key="home">
-            <router-link to="/">
-              <a-icon type="home"/>Home
-            </router-link>
+            <router-link to="/"> <a-icon type="home" />Home </router-link>
           </a-menu-item>
           <a-menu-item key="works">
-            <router-link to="/works">
-              <a-icon type="form"/>Works
-            </router-link>
+            <router-link to="/works"> <a-icon type="form" />Works </router-link>
           </a-menu-item>
           <a-menu-item key="about">
-            <router-link to="/about">
-              <a-icon type="read"/>About
-            </router-link>
+            <router-link to="/about"> <a-icon type="read" />About </router-link>
           </a-menu-item>
           <a-menu-item key="contact">
             <router-link to="/contact">
-              <a-icon type="mail"/>Contact
+              <a-icon type="mail" />Contact
             </router-link>
           </a-menu-item>
         </a-menu>
       </a-layout-header>
       <a-layout-content>
-        <router-view/>
+        <router-view />
       </a-layout-content>
       <a-layout-footer><h-footer></h-footer></a-layout-footer>
     </a-layout>
-     <a-back-top />
+    <a-back-top />
   </div>
 </template>
 <script>
