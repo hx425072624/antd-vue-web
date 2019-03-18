@@ -2,7 +2,8 @@
   <div id="app">
     <a-layout>
       <a-layout-header>
-        <a-menu v-model="current" mode="horizontal">
+        <a-menu mode="horizontal" :multiple="false">
+          <!-- v-model="current" -->
           <a-menu-item key="home">
             <router-link to="/"> <a-icon type="home" />Home </router-link>
           </a-menu-item>
@@ -62,4 +63,35 @@ export default {
 //     }
 //   }
 // }
+</style>
+<style>
+.animating {
+  animation: mymove-in 4s infinite;
+  -webkit-animation: mymove-in 4s infinite;
+}
+@keyframes mymove-in {
+  from {
+    -webkit-transform: scale(1, 1); /* Safari and Chrome */
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  to {
+    -webkit-transform: scale(1.2, 1.2); /* Safari and Chrome */
+    -o-transform: scale(1.2, 1.2);
+    transform: scale(1.2, 1.2);
+  }
+}
+
+@keyframes mymove-out {
+  from {
+    -webkit-transform: scale(1.2, 1.2); /* Safari and Chrome */
+    -o-transform: scale(1.2, 1.2);
+    transform: scale(1.2, 1.2);
+  }
+  to {
+    -webkit-transform: scale(1, 1); /* Safari and Chrome */
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
 </style>

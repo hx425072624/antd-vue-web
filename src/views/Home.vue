@@ -15,21 +15,11 @@
         <img :src="item.img" alt />
       </div>
     </a-carousel>
-    <a-row>
-      <a-col
-        :span="12"
-        @mouseover="handleHover(index)"
-        @mouseout="handleOut(index)"
-        v-for="(item, index) in items"
-        :key="index"
-      >
+    <a-row id="img-workers">
+      <a-col :span="12" v-for="(item, index) in items" :key="index">
         <div class="img-work">
           <div class="mask"></div>
-          <img
-            :class="[item.imgClass, item.imgClassPaused]"
-            :src="item.img"
-            alt
-          />
+          <img :src="item.img" alt />
         </div>
       </a-col>
     </a-row>
@@ -40,6 +30,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
+import Snap from 'snapsvg'
 export default {
   name: 'home',
   data () {
@@ -48,44 +39,58 @@ export default {
         {
           title: 'hello world',
           des: 'this is my first test web site',
-          img: '/img/iso500.jpg',
-          imgClass: '',
-          imgClassPaused: 'img-running'
+          img: '/img/iso500.jpg'
         },
         {
           title: 'hello world',
           des: 'this is my first test web site',
-          img: '/img/madem.jpg',
-          imgClass: '',
-          imgClassPaused: 'img-running'
+          img: '/img/madem.jpg'
         },
         {
           title: 'hello world',
           des: 'this is my first test web site',
-          img: '/img/plume.jpg',
-          imgClass: '',
-          imgClassPaused: 'img-running'
+          img: '/img/plume.jpg'
         },
         {
           title: 'hello world',
           des: 'this is my first test web site',
-          img: '/img/wod.jpg',
-          imgClass: '',
-          imgClassPaused: 'img-running'
+          img: '/img/wod.jpg'
         }
       ]
     }
   },
-  methods: {
-    handleHover (index) {
-      this.items[index].imgClass = 'img-animation-in'
-      this.items[index].imgClassPaused = 'img-running'
-    },
-    handleOut (index) {
-      // this.items[index].imgClass = '';
-      this.items[index].imgClassPaused = 'img-paused'
-    }
+  mounted () {
+    var svg = Snap('#img-workers')
+    var m = new Snap.Matrix()
+    m.scale(1.2, 1.2)
+    var imgs = svg.selectAll('.img-work')
+    imgs.forEach(img => {
+      img.hover(function () {
+        // 移入
+
+        this.select('img').animate({
+          transform: m.toTransformString()
+        }, 5000)
+        // this.select('img').animate({
+        //   transform: 'scale(1.2, 1.2)'
+        // }, 5000)
+        // this.animate({
+        //   fill: '#f00' // 红色
+        // }, 1000)
+      }, function () {
+        // 移出
+        // var m = new Snap.Matrix()
+        // m.scale(1, 1)
+        // this.select('img').attr({
+        //   class: ''
+        // })
+        // this.select('img').animate({
+        //   transform: 'scale(1, 1)'
+        // }, 5000)
+      })
+    })
   },
+  methods: {},
   components: {
     HelloWorld
   }
@@ -99,33 +104,14 @@ export default {
   height: 100%;
   width: 100%;
 }
-img.img-paused {
-  /* animation-play-state: paused; */
-  animation-direction: reverse;
-}
-img .img-running {
-  /* animation-play-state: running; */
-  animation-direction: normal;
-}
 .mask:hover {
   background: rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
 
-.img-animation-in {
-  animation: mymove-in 8s 1;
-  -webkit-animation: mymove-in 8s 1;
-  animation-fill-mode: backwards;
-}
-/* .img-animation-out {
-  animation: mymove-out 8s infinite;
-  -webkit-animation: mymove-out 8s 1;
-} */
-
 .carousel-img img {
   height: 100%;
   width: 100%;
-  animation-direction: alternate;
 }
 
 .mask {
@@ -158,31 +144,5 @@ img .img-running {
 
 .ant-carousel >>> .slick-slide h3 {
   color: #fff;
-}
-
-@keyframes mymove-in {
-  from {
-    -webkit-transform: scale(1, 1); /* Safari and Chrome */
-    -o-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
-  to {
-    -webkit-transform: scale(1.2, 1.2); /* Safari and Chrome */
-    -o-transform: scale(1.2, 1.2);
-    transform: scale(1.2, 1.2);
-  }
-}
-
-@keyframes mymove-out {
-  from {
-    -webkit-transform: scale(1.2, 1.2); /* Safari and Chrome */
-    -o-transform: scale(1.2, 1.2);
-    transform: scale(1.2, 1.2);
-  }
-  to {
-    -webkit-transform: scale(1, 1); /* Safari and Chrome */
-    -o-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
 }
 </style>
