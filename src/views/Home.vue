@@ -18,11 +18,30 @@
     <a-row id="img-workers">
       <a-col :span="12" v-for="(item, index) in items" :key="index">
         <div class="img-work">
-          <div class="mask"></div>
-          <img :src="item.img" alt />
+          <div class="mask">
+            <div class="mask-content">
+              <div class="title" v-text="item.title"></div>
+              <div class="des" v-text="item.des"></div>
+            </div>
+          </div>
+          <svg
+            class="img"
+            version="1.1"
+            id="Layer_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 1280 900"
+            enable-background="new 0 0 1280 900"
+            xml:space="preserve"
+          >
+            <image x="0" y="0" :href="item.img" />
+          </svg>
         </div>
       </a-col>
     </a-row>
+
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
 </template>
@@ -61,32 +80,22 @@ export default {
   },
   mounted () {
     var svg = Snap('#img-workers')
-    var m = new Snap.Matrix()
-    m.scale(1.2, 1.2)
     var imgs = svg.selectAll('.img-work')
     imgs.forEach(img => {
       img.hover(function () {
         // 移入
-
-        this.select('img').animate({
-          transform: m.toTransformString()
-        }, 5000)
-        // this.select('img').animate({
-        //   transform: 'scale(1.2, 1.2)'
-        // }, 5000)
-        // this.animate({
-        //   fill: '#f00' // 红色
-        // }, 1000)
+        var bigger = new Snap.Matrix()
+        bigger.scale(1.2)
+        this.select('.img').animate({
+          transform: bigger.toTransformString()
+        }, 4000)
       }, function () {
         // 移出
-        // var m = new Snap.Matrix()
-        // m.scale(1, 1)
-        // this.select('img').attr({
-        //   class: ''
-        // })
-        // this.select('img').animate({
-        //   transform: 'scale(1, 1)'
-        // }, 5000)
+        var smaller = new Snap.Matrix()
+        smaller.scale(1)
+        this.select('.img').animate({
+          transform: smaller.toTransformString()
+        }, 4000)
       })
     })
   },
@@ -120,7 +129,27 @@ export default {
   z-index: 999;
   position: absolute;
 }
-
+.mask-content {
+  position: relative;
+  align-content: center;
+  top: 50%; /*偏移*/
+  transform: translateY(-50%);
+  /* display: none; */
+}
+.mask:hover .mask-content {
+  display: block;
+}
+.title {
+  color: #fff;
+  font: 74px bold;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+.des {
+  color: #fff;
+  font: italic 16px/2;
+  letter-spacing: 0.1em;
+}
 .ant-carousel >>> .slick-slide {
   text-align: center;
   max-height: 320px;
