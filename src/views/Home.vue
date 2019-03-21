@@ -16,14 +16,8 @@
       </div>
     </a-carousel>
     <a-row id="img-workers">
-      <a-col :span="12" v-for="(item, index) in items" :key="index">
+      <a-col :md="12" v-for="(item, index) in items" :key="index">
         <div class="img-work">
-          <div class="mask">
-            <div class="mask-content">
-              <div class="title" v-text="item.title"></div>
-              <div class="des" v-text="item.des"></div>
-            </div>
-          </div>
           <svg
             class="img"
             version="1.1"
@@ -38,6 +32,12 @@
           >
             <image x="0" y="0" :href="item.img" />
           </svg>
+          <div class="mask">
+            <div class="mask-content">
+              <div class="title" v-text="item.title"></div>
+              <div class="des" v-text="item.des"></div>
+            </div>
+          </div>
         </div>
       </a-col>
     </a-row>
@@ -106,6 +106,9 @@ export default {
 }
 </script>
 <style  scoped>
+#img-workers {
+  font-size: 0px;
+}
 .img-work {
   overflow: hidden;
 }
@@ -123,31 +126,15 @@ export default {
   width: 100%;
 }
 
-.mask {
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-  position: absolute;
-}
-.mask-content {
-  position: relative;
-  align-content: center;
-  top: 50%; /*偏移*/
-  transform: translateY(-50%);
-  /* display: none; */
-}
-.mask:hover .mask-content {
-  display: block;
-}
 .title {
   color: #fff;
-  font: 74px bold;
+  font: 74px "FuturaStd-Bold";
   letter-spacing: 0;
   text-transform: uppercase;
 }
 .des {
   color: #fff;
-  font: italic 16px/2;
+  font: italic 16px/2 "georgia";
   letter-spacing: 0.1em;
 }
 .ant-carousel >>> .slick-slide {
@@ -173,5 +160,56 @@ export default {
 
 .ant-carousel >>> .slick-slide h3 {
   color: #fff;
+}
+
+@font-face {
+  font-family: FuturaStd-Bold;
+  src: url("/font/FuturaStd-Bold.woff");
+}
+
+@media (min-width: 576px) {
+  .mask {
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    position: absolute;
+    top: 0;
+  }
+  .mask-content {
+    position: relative;
+    align-content: center;
+    top: 50%; /*偏移*/
+    transform: translateY(-50%);
+    display: none;
+  }
+  .mask:hover .mask-content {
+    display: block;
+  }
+}
+
+@media (max-width: 576px) {
+  .mask {
+    background: #1a1c1e;
+    color: #fff;
+    text-shadow: none;
+    height: 100px;
+  }
+
+  .mask .mask-content {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .mask .title {
+    color: #d8d8d8;
+    font: 16px/1.2 "FuturaStdBold";
+    letter-spacing: 0.2em;
+  }
+  .mask .des {
+    margin-top: 5px;
+    color: #c9c9c9;
+    font: italic 13px/1.2 "georgia";
+    letter-spacing: 0.15em;
+  }
 }
 </style>
