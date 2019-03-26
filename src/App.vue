@@ -1,25 +1,32 @@
 <template>
   <div id="app">
     <a-layout>
-      <a-layout-header>
-        <a-menu mode="horizontal" :multiple="false">
-          <!-- v-model="current" -->
-          <a-menu-item key="home">
-            <router-link to="/"> <a-icon type="home" />Home </router-link>
-          </a-menu-item>
-          <a-menu-item key="works">
-            <router-link to="/works"> <a-icon type="form" />Works </router-link>
-          </a-menu-item>
-          <a-menu-item key="about">
-            <router-link to="/about"> <a-icon type="read" />About </router-link>
-          </a-menu-item>
-          <a-menu-item key="contact">
-            <router-link to="/contact">
-              <a-icon type="mail" />Contact
-            </router-link>
-          </a-menu-item>
-        </a-menu>
-      </a-layout-header>
+      <a-affix :offsetTop="0">
+        <a-layout-header>
+          <a-menu mode="horizontal" :multiple="false">
+            <!-- v-model="current" -->
+            <a-menu-item key="home">
+              <router-link to="/"> <a-icon type="home" />Home </router-link>
+            </a-menu-item>
+            <a-menu-item key="works">
+              <router-link to="/works">
+                <a-icon type="form" />Works
+              </router-link>
+            </a-menu-item>
+            <a-menu-item key="about">
+              <router-link to="/about">
+                <a-icon type="read" />About
+              </router-link>
+            </a-menu-item>
+            <a-menu-item key="contact">
+              <router-link to="/contact">
+                <a-icon type="mail" />Contact
+              </router-link>
+            </a-menu-item>
+          </a-menu>
+        </a-layout-header>
+      </a-affix>
+
       <a-layout-content>
         <router-view />
       </a-layout-content>
@@ -46,6 +53,10 @@ export default {
   height: unset;
   background: #fff;
 }
+.ant-layout-footer {
+  background-color: #fff;
+}
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
